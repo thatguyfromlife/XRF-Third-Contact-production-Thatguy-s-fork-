@@ -205,8 +205,10 @@
 
 	if(!(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		stat("Evolve Progress:", "(FINISHED)")
-	else if(!hive.check_ruler())
-		stat("Evolve Progress:", "(HALTED - NO RULER)")
+//might remove need for ruler, might just remove it from the hud
+//	else if(!hive.check_ruler())
+//		stat("Evolve Progress:", "(HALTED - NO RULER)")
+
 	else
 		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
 
@@ -365,8 +367,8 @@
 		return
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
-	if(!hive.check_ruler())
-		return
+//	if(!hive.check_ruler())
+//		return
 
 	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)

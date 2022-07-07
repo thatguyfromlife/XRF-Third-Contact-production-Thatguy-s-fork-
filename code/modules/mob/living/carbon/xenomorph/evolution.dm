@@ -152,10 +152,10 @@
 		return
 
 	// used below
-	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
-	var/tierones
-	var/tiertwos
-	var/tierthrees
+//	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
+//	var/tierones
+//	var/tiertwos
+//	var/tierthrees
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen) //Special case for dealing with queenae
 		if(is_banned_from(ckey, ROLE_XENO_QUEEN))
@@ -222,32 +222,33 @@
 		if(!T.check_alien_construction(src))
 			return
 
+//commented out code checking if there were too many xenos of an existing tier
 
 	else
 		if(new_caste_type == /mob/living/carbon/xenomorph/runner & CONFIG_GET(flag/roony))//If the fun config is set, every runner is a roony
 			new_caste_type = /mob/living/carbon/xenomorph/roony
-		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
+//		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
-		tierzeros = hive.get_total_tier_zeros()
-		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
-		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
-		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+//		tierzeros = hive.get_total_tier_zeros()
+//		tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+//		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+//		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
 		if(forced)
 			//Nothing, go on as normal.
-		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
-			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
-			return
-		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
-				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
-				return
-			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
-				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!</span>")
-				return
+//		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+//			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
+//			return
+//		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+//			to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
+//			return
+//		else if(SSticker.mode?.flags_round_type & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
+//			if(isxenolarva(src) && new_caste_type != /mob/living/carbon/xenomorph/drone)
+//				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!</span>")
+//				return
+//			else if(isxenodrone(src) && new_caste_type != /mob/living/carbon/xenomorph/shrike)
+//				to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!</span>")
+//				return
 		else if(xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
 			to_chat(src, "<span class='warning'>We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold].</span>")
 			return
@@ -265,10 +266,10 @@
 		to_chat(src, "<span class='warning'>We quiver, but nothing happens. We must hold still while evolving.</span>")
 		return
 
-	tierzeros = hive.get_total_tier_zeros()
-	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
-	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
-	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
+//	tierzeros = hive.get_total_tier_zeros()
+//	tierones = length(hive.xenos_by_tier[XENO_TIER_ONE])
+//	tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
+//	tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
 	if(new_caste_type == /mob/living/carbon/xenomorph/queen)
 		if(hive.living_xeno_queen) //Do another check after the tick.
@@ -286,13 +287,13 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
 			return
-	else if(!forced) // these shouldnt be checked if trying to become a queen.
-		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
-			return
-		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
-			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
-			return
+//	else if(!forced) // these shouldnt be checked if trying to become a queen.
+//		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+//			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
+//			return
+//		else if(tier == XENO_TIER_TWO && TO_XENO_TIER_3_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
+//			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 3.</span>")
+//			return
 
 	if(!isturf(loc)) //cdel'd or moved into something
 		return
