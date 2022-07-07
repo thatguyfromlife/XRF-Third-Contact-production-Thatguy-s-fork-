@@ -16,7 +16,7 @@
 #define JOBS_PRIORITY_LOW 1
 #define JOBS_PRIORITY_NEVER 0
 
-#define MAX_GEAR_COST 5 //Custom loadout point limit.
+#define MAX_GEAR_COST 6 //Custom loadout point limit.
 
 #define BE_ALIEN (1<<0)
 #define BE_QUEEN (1<<1) //Unused
