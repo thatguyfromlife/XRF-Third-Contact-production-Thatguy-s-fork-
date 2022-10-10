@@ -930,6 +930,7 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
+			/obj/item/clothing/suit/storage/snow_suit = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,
