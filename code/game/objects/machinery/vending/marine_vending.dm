@@ -848,6 +848,7 @@
 			/obj/item/clothing/suit/modular = -1,
 			/obj/item/clothing/suit/storage/marine/harness = -1,
 			/obj/item/clothing/suit/armor/vest/pilot = -1,
+			/obj/item/clothing/suit/storage/snow_suit = -1,
 			/obj/item/facepaint/green = -1,
 		),
 		"Helmets" = list(
@@ -930,7 +931,6 @@
 			/obj/item/clothing/head/white_dress = -1,
 			/obj/item/clothing/shoes/white = -1,
 			/obj/item/clothing/gloves/white = -1,
-			/obj/item/clothing/suit/storage/snow_suit = -1,
 		),
 		"Webbings" = list(
 			/obj/item/clothing/tie/storage/black_vest = -1,
